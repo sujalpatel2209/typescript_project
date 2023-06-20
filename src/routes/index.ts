@@ -1,7 +1,7 @@
-import healthRoutes from './health.route';
+import appRoute from './route';
 
-const appRoutes = (app: any) => {
-    app.use('/api/v1/', healthRoutes)
+const appRoutes = (app: any): void => {
+    app.use('/api/v1/', appRoute);
 }
 
 export default appRoutes;
