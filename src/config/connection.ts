@@ -1,4 +1,4 @@
-import db from 'mysql2';
+import db, {QueryError} from 'mysql2';
 import dotenv from 'dotenv';
 import {dbConfigType} from "../interface/db.interface";
 
@@ -14,9 +14,21 @@ const dbConfig: dbConfigType = {
 const connection: db.Connection = db.createConnection(dbConfig);
 
 connection.connect((error: db.QueryError | null): void => {
-    if(error) {
+    if (error) {
         throw error;
     }
 });
 
-export default connection;
+const query = async (con: db.Connection, query: string, params: any) => {
+    return new Promise((resolve, reject) => {
+        con.query(query, params, (err: db.QueryError | null, result: any) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(result);
+        });
+    });
+};
+
+export default {connection, query};
