@@ -1,4 +1,4 @@
-export interface dbConfigType {
+export interface DbConfigType {
     host: string | undefined,
     user: string | undefined,
     password: string | undefined,

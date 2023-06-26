@@ -1,10 +1,10 @@
-export interface messageType {
+export interface MessageType {
     SUCCESS: string,
     FAIL: string,
     HEALTH_SUCCESS: string,
     USER_SIGNUP: string
 }
 
-export interface statusCode {
+export interface StatusCode {
     CREATED: number
 }

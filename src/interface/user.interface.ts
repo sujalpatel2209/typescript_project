@@ -1,9 +1,9 @@
-interface signInType {
+interface SignInType {
     username: string,
     password: string,
 }
 
-export interface userType extends signInType {
+export interface UserType extends SignInType {
     firstname: string,
     lastname: string,
 }

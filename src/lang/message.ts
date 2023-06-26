@@ -1,6 +1,6 @@
-import {messageType, statusCode} from "../interface/message.interface";
+import {MessageType, StatusCode} from "../interface/message.interface";
 
-export const MESSAGES: messageType = {
+export const MESSAGES: MessageType = {
     SUCCESS: 'Success',
     FAIL: 'Fail',
     HEALTH_SUCCESS: 'Server health is okay.',
@@ -8,6 +8,6 @@ export const MESSAGES: messageType = {
     USER_SIGNUP: 'User signed up successfully.',
 }
 
-export const STATUS_CODE: statusCode = {
+export const STATUS_CODE: StatusCode = {
     CREATED: 201
 }
