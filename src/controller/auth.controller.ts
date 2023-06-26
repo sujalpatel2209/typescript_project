@@ -4,21 +4,41 @@ import authService from "../services/auth.service";
 import {MESSAGES, STATUS_CODE} from "../lang/message";
 
 const signIn = async (req: Request, res: Response) => {
-    res.send({
-        req: req.body,
-    });
+    try {
+        const {username, password} = req.body;
+
+
+
+    } catch (error) {
+        return res.status(STATUS_CODE.SERVER_ERROR).send({
+            status: MESSAGES.FAIL,
+            message: error,
+        });
+    }
 }
 
 const signUp = async (req: Request, res: Response) => {
-    const { firstname, lastname, username, password }: UserType = req.body;
+    try {
+        const { firstname, lastname, username, password }: UserType = req.body;
 
-    await authService.userSignUp({
-        firstname, lastname, username, password,
-    });
-    return res.status(STATUS_CODE.CREATED).send({
-        status: MESSAGES.SUCCESS,
-        message: MESSAGES.USER_SIGNUP,
-    });
+        const result = await authService.userSignUp({
+            firstname, lastname, username, password,
+        });
+
+        if (result) {
+            return res.status(STATUS_CODE.CREATED).send({
+                status: MESSAGES.SUCCESS,
+                message: MESSAGES.USER_SIGNUP,
+            });
+        }
+    } catch (error) {
+        return res.status(STATUS_CODE.SERVER_ERROR).send({
+            status: MESSAGES.FAIL,
+            message: error,
+        });
+    }
+
+
 
 }
 
