@@ -7,6 +7,28 @@ const signIn = async (req: Request, res: Response) => {
     try {
         const {username, password} = req.body;
 
+        const result = await authService.userSignIn({username, password});
+        // Check User available or not in the database using username
+        if(!result)
+            return res.status(STATUS_CODE.NOT_FOUND).send({
+                status: MESSAGES.FAIL,
+                message: MESSAGES.RECORD_NOT_FOUND,
+            });
+
+        // compare the password
+        const validatePassword = await authService.comparePassword(password, result.password);
+        if(!validatePassword)
+            return res.status(STATUS_CODE.UNAUTHENTICATED).send({
+                status: MESSAGES.FAIL,
+                message: MESSAGES.UNAUTHENTICATED_USER
+            });
+
+        // Generate JWT token
+
+
+        return res.status(STATUS_CODE.OK).send({
+           data: result
+        });
 
 
     } catch (error) {
@@ -37,9 +59,6 @@ const signUp = async (req: Request, res: Response) => {
             message: error,
         });
     }
-
-
-
 }
 
 export default {

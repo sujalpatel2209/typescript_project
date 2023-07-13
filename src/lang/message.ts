@@ -5,7 +5,9 @@ export const MESSAGES: MessageType = {
     FAIL: 'Fail',
     HEALTH_SUCCESS: 'Server health is okay.',
 
+    RECORD_NOT_FOUND: 'Record not found.',
     INTERNAL_SERVER_ERROR: 'Internal Server Error.',
+    UNAUTHENTICATED_USER: 'Username and password invalid.',
 
     USER_SIGNUP: 'User signed up successfully.',
 }
@@ -13,4 +15,7 @@ export const MESSAGES: MessageType = {
 export const STATUS_CODE: StatusCode = {
     CREATED: 201,
     SERVER_ERROR: 500,
+    OK: 200,
+    NOT_FOUND: 404,
+    UNAUTHENTICATED: 401,
 }
